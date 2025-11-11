@@ -1,13 +1,10 @@
-# config.yaml (Cập nhật: Thêm column_mapping - dictionary từ key JSON → tên tiếng Việt)
 base_url: "https://www.nhatot.com/mua-ban-bat-dong-san-ha-noi"
 gateway_base: "https://gateway.chotot.com/v1/public/ad-listing/"
-max_pages: 1  # Test nhỏ, tăng dần
+max_pages: 5
 start_page: 1
 db_file: "nhatot.db"
 user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 
-# Mapping: key (đường dẫn nested, e.g. 'ad.subject') → tên cột tiếng Việt
-# Hỗ trợ custom: 'special:latitude_longitude' cho logic đặc biệt
 column_mapping:
   ad.list_id: "ID bài đăng"
   ad.price: "Giá (VND)"
