@@ -1,4 +1,3 @@
-# WebCrawler.py (Cập nhật để dùng Selenium)
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
@@ -12,15 +11,14 @@ class WebCrawler:
     def fetch_page(self, url):
         try:
             options = Options()
-            options.headless = True  # Chạy ngầm, không mở cửa sổ trình duyệt
+            options.headless = True  
             options.add_argument(f"user-agent={self.user_agent}")
             options.add_argument("--no-sandbox")
             options.add_argument("--disable-dev-shm-usage")
 
-            # Nếu chromedriver không trong PATH, chỉ định path (ví dụ: '/path/to/chromedriver')
             # service = Service('/path/to/chromedriver')
             # driver = webdriver.Chrome(service=service, options=options)
-            driver = webdriver.Chrome(options=options)  # Nếu đã add PATH
+            driver = webdriver.Chrome(options=options)  
 
             driver.get(url)
             html = driver.page_source

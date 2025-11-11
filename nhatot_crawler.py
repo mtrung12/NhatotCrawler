@@ -73,15 +73,13 @@ class NhatotCrawler:
 
     def save_to_db(self, ad_id, data):
         extracted = {}
-        # ID bài đăng luôn từ list_id hoặc ad_id
         extracted["ID bài đăng"] = data.get('ad', {}).get('list_id', ad_id)
         
-        # Extract từ mapping (bao gồm ID để consistent, nhưng DB sẽ handle)
         for key_path, vn_name in self.column_mapping.items():
             value = self._extract_value(data, key_path)
             extracted[vn_name] = value
         
-        # Lưu vào DB
+        # save to DB
         con = duckdb.connect(self.db_file)
         columns = ', '.join(f'"{k}"' for k in extracted.keys())
         placeholders = ', '.join('?' for _ in extracted)
