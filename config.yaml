@@ -1,6 +1,6 @@
 base_url: "https://www.nhatot.com/mua-ban-bat-dong-san-ha-noi"
 gateway_base: "https://gateway.chotot.com/v1/public/ad-listing/"
-max_pages: 5
+max_pages: 1
 start_page: 1
 db_file: "nhatot.db"
 user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
