@@ -1,15 +1,16 @@
 import pandas as pd
+from logger import log
 
 def check_csv(csv_file):
     try:
         df = pd.read_csv(csv_file)
-        print(f"CSV file: {csv_file}")
-        print(f"Shape: {df.shape}")
-        print("Columns:", df.columns.tolist())
-        print("First few rows:")
-        print(df.head())
+        log.info(f"CSV file: {csv_file}")
+        log.info(f"Shape: {df.shape}")
+        log.info("Columns:", df.columns.tolist())
+        log.info("First few rows:")
+        log.info(df.head())
     except Exception as e:
-        print(f"Error checking CSV: {e}")
+        log.error(f"Error checking CSV: {e}")
 
 if __name__ == "__main__":
     check_csv('bdsonline_export.csv')

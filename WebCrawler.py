@@ -3,6 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
 import time
+from logger import log
 
 class WebCrawler:
     def __init__(self, base_url, user_agent):
@@ -31,7 +32,7 @@ class WebCrawler:
             driver.quit()
             return html
         except Exception as e:
-            print(f"Error fetching {url} with Selenium: {e}")
+            log.error(f"Error fetching {url} with Selenium: {e}")
             return None
 
     def parse_listing_page(self, html):
@@ -47,15 +48,9 @@ class WebCrawler:
                     ids.append(int(parts))
         return ids
 
-    def crawl_listings(self, max_pages=1, start_page=1):
-        all_ids = []
-        for page in range(start_page, max_pages + 1):
-            url = f"{self.base_url}?page={page}"
-            html = self.fetch_page(url)
-            if html:
-                ids = self.parse_listing_page(html)
-                all_ids.extend(ids)
-                print(f"Page {page}: Found {len(ids)} IDs")
-            else:
-                break
-        return list(set(all_ids))  # Remove duplicates if any
+    def crawl_page(self, page): 
+        url = f"{self.base_url}?page={page}"
+        html = self.fetch_page(url)
+        if not html:
+            return []
+        return self.parse_listing_page(html)
