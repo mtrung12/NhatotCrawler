@@ -20,5 +20,10 @@ class Logger:
         line = f"[{_now()}] ERROR: {msg.format(*args) if args else msg}"
         self.out.write(line + "\n")
         self.out.flush()
+        
+    def warning(self, msg, *args):
+        line = f"[{_now()}] WARNING: {msg.format(*args) if args else msg}"
+        self.out.write(line + "\n")
+        self.out.flush()
 
 log = Logger()
